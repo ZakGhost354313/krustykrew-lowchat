@@ -1,13 +1,21 @@
-<br>CLIENT: /clearlog
-/clearname
-/help
-/join [room]
-/msg [user] [message]
-/nick [name]
-/rooms
-/users
+<br>CLIENT:<br /> 
+/clearlog
 
-<div id="whois_Command"><br /><code>/whois [user/#room]</code><div>this is just a template command for the help text</div></div>
+/clearname
+
+/help
+
+/join [room]
+
+<div id="msg_Command"><br /><code>/msg [user] [message]</code><div>this command will send the provided message to the provided user, anyone who isnt the provided user cannot see the message(including the person who sent the message).</div></div>
+
+<div id="nick_Command"><br /><code>/nick [name]</code><div>this command will change your name to the name provided</div></div>
+
+<div id="rooms_Command"><br /><code>/rooms</code><div>this commad will show you the current rooms that are open.</div></div>
+
+<div id="users_Command"><br /><code>/users</code><div>this command will show you all of the users currently in the room that you are in.</div></div>
+
+<div id="whois_Command"><br /><code>/whois [user/#room]</code><div>this command will give you information about a user, or room that is provided.</div></div>
 
 <br><br />OP:<br /> 
 
