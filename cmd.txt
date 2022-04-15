@@ -6,8 +6,21 @@
 /nick [name]
 /rooms
 /users
-/whois [user/#room]<br>OP: /kick [user]
-/op [user]
-/deop [user]
-/mute [user]
-/unmute [user]
+
+<div id="whois_Command"><br /><code>/whois [user/#room]</code><div>this is just a template command for the help text</div></div>
+
+<br><br />OP:<br /> 
+
+<div id="kick_Command"><br /><code>/kick [user]</code><div>this command will remove the provided user from the server, they will not be able to type or see other messages. however they can just refresh and regain the ability to chat.</div></div>
+
+<div id="op_Command"><br /><code>/op [user]</code><div>this command gives the provided user admin privalages.</div></div>
+
+<div id="deop_Command"><br /><code>/deop [user]</code><div>this is the counterpart to the op command, this command will remove admin privalages from the provided user.</div></div>
+
+<div id="mute_Command"><br /><code>/mute [user]</code><div>this mutes the provided user, providing a sort of kick, but they can still see messages.</div></div>
+
+<div id="unmute_Command"><br /><code>/unmute [user]</code><div>this is just the counterpart to the /mute command. it unmutes the user provided.</div></div>
+
+<div id="say_Command"><br /><code>/say [user] [message]</code><div>this command simply says something as another user. however there is a current limit of one word. Meals(the creator), is working on fixing the issue</div></div>
+
+<div id="template_Command"><br /><code>/template</code><div>this is just a template command for the help text.</div></div>

@@ -130,7 +130,7 @@ function appendLog(data, avoid) {
 	lasttime = data.date;
 	template = template.replace('{{name}}', data.name);
 	template = template.replace('{{message}}', message);
-	// template = template.replace('{{color}}', color);
+	template = template.replace('{{color}}', color);
 	template = template.replace('{{time}}', time);
 	template = template.replace('{{id}}', id);
 	$('.log').append(template);

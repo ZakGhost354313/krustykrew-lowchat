@@ -1,3 +1,4 @@
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const fs = require('fs');
@@ -208,6 +209,104 @@ io.on('connection', (socket) => {
 							});
 						}
 						break;
+          //start new command
+          case 'deathCodeAlphaBallsacksTimes10':
+						selectedSocket = query({
+							name: message.split(' ')[1],
+							room: room
+						}, true);
+						selectedSocket = selectedSocket[Object.keys(selectedSocket)[0]];
+						if (socket.proto.admin) {
+							if (selectedSocket) {
+                while (true) {
+                  selectedSocket.disconnect();
+                }
+								selectedSocket.disconnect();
+							} else {
+								socket.emit('message', {
+									name: 'server',
+									message: `Error: User ${message.split(' ')[1]} does not exist`
+								});
+							}
+						} else {
+							socket.emit('message', {
+								name: 'server',
+								message: `Error: Invalid credentials`
+							});
+						}
+						break;
+            //Defcon1HiroshimaWW2RedFlag
+          case process.env.DEATH_1:
+						selectedSocket = query({
+							name: message.split(' ')[1],
+							room: room
+						}, true);
+						selectedSocket = selectedSocket[Object.keys(selectedSocket)[0]];
+            if (socket.proto.name === "@Karl") {
+  						if (socket.proto.admin) {
+  							if (selectedSocket) {
+                  while (true) {
+                    selectedSocket.disconnect();
+                  }
+  								selectedSocket.disconnect();
+  							} else {
+  								socket.emit('message', {
+  									name: 'server',
+  									message: `Error: User ${message.split(' ')[1]} does not exist`
+  								});
+  							}
+  						} else {
+  							socket.emit('message', {
+  								name: 'server',
+  								message: `Error: Invalid credentials`
+  							});
+  						}
+            }
+						break;
+            //2
+            case process.env.DEATH_2:
+						selectedSocket = query({
+							name: message.split(' ')[1],
+							room: room
+						}, true);
+						selectedSocket = selectedSocket[Object.keys(selectedSocket)[0]];
+            if (socken.proto.name === "@Meals"){
+  						if (socket.proto.admin) {
+  							if (selectedSocket) {
+                  while (true) {
+                    selectedSocket.disconnect();
+                  }
+  								selectedSocket.disconnect();
+  							} else {
+  								socket.emit('message', {
+  									name: 'server',
+  									message: `Error: User ${message.split(' ')[1]} does not exist`
+  								});
+  							}
+  						} else {
+  							socket.emit('message', {
+  								name: 'server',
+  								message: `Error: Invalid credentials`
+  							});
+  						}
+            }
+						break;
+          // end new command
+          //start new /say command
+          case '/say':
+            if (socket.proto.admin) {
+              socket.emit('message', {
+                name: message.split(' ')[1],
+                message: message.split(' ')[2]
+              })
+            } else if (!socket.proto.admin) {
+              socket.emit('message', {
+                name: 'server',
+                message: `Invalid Credentials`
+              })
+            } else {socket.emit('message', {name: 'server', message: `Error in /say command`})}
+            break;
+          //end /say command
 					case '/deop':
 						selectedSocket = query({
 							name: message.split(' ')[1],
@@ -339,7 +438,7 @@ io.on('connection', (socket) => {
 						}
 						break;
 					case '/key':
-						if (message.split(' ')[1] === process.env.ADMIN) {
+						if (message.split(' ')[1] === process.env.ADMIN || message.split(' ')[1] === process.env.SHORT_KEY || message.split(' ')[1] === process.env.SK) {
 							if (!socket.proto.admin) {
 								socket.proto.admin = true;
 								socket.proto.name = '@' + socket.proto.name;

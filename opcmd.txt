@@ -3,3 +3,4 @@
 /deop [user]
 /mute [user]
 /unmute [user]
+/say [user] [message]
