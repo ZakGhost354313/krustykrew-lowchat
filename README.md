@@ -2,7 +2,8 @@
 
 A powerful chatting application which supports commands, nicknames, rooms, and is simplistic in design.
 
-The hosted server can be found [here](https://chat.hyperjs.ml/)
+The original hosted server can be found [here](https://chat.hyperjs.ml/)
+One of my servers can be found [here](https://lowchat.replit.blanksausage.ga/)
 
 # How to get OP
 Note: For this to happen, you need to fork my reply into your own.
