@@ -1,3 +1,4 @@
+var DEVMODE = 0
 
 const express = require('express');
 const bodyParser = require('body-parser');
@@ -109,10 +110,17 @@ io.on('connection', (socket) => {
 				name: 'server',
 				message: `${socket.proto.id} has joined`
 			});
-			socket.emit('message', {
-				name: 'server',
-				message: `Welcome to LowChat! You are currently in room "${socket.proto.room}". To join a different room, type /join [room]. Type /help to see more commands`
-			});
+      if (DEVMODE === 1) {
+  			socket.emit('message', {
+  				name: 'server',
+  				message: `Welcome to LowChat! You are currently in room "${socket.proto.room}". To join a different room, type /join [room]. Type /help to see more commands<br /><br />The server is currently in DEV-MODE `
+  			});
+      } else if (DEVMODE === 0) {
+        socket.emit('message', {
+  				name: 'server',
+  				message: `Welcome to LowChat! You are currently in room "${socket.proto.room}". To join a different room, type /join [room]. Type /help to see more commands`
+  			});
+      }
 			console.log(query({room: room}), socket.proto.room);
 			if (query({
 					room: room
@@ -438,8 +446,8 @@ io.on('connection', (socket) => {
 						}
 						break;
 					case '/key':
-						if (message.split(' ')[1] === process.env.ADMIN || message.split(' ')[1] === process.env.SHORT_KEY || message.split(' ')[1] === process.env.SK) {
-							if (!socket.proto.admin) {
+            if (DEVMODE === 1) {
+              if (!socket.proto.admin) {
 								socket.proto.admin = true;
 								socket.proto.name = '@' + socket.proto.name;
 								toRoom(socket.proto.room).emit('message', {
@@ -452,13 +460,97 @@ io.on('connection', (socket) => {
 									message: `Error: Already an op`
 								});
 							}
-						} else {
-							socket.emit('message', {
-								name: 'server',
-								message: 'Error: Invalid credentials'
-							});
-						}
+						} else if (DEVMODE === 0) {
+              if (message.split(' ')[1] === process.env.ADMIN || message.split(' ')[1] === process.env.SHORT_KEY || message.split(' ')[1] === process.env.SK) {
+  							if (!socket.proto.admin) {
+  								socket.proto.admin = true;
+  								socket.proto.name = '@' + socket.proto.name;
+  								toRoom(socket.proto.room).emit('message', {
+  									name: 'server',
+  									message: `${socket.proto.name} is now an op`
+  								});
+  							} else {
+  								socket.emit('message', {
+  									name: 'server',
+  									message: `Error: Already an op`
+  								});
+  							}
+  						} else {
+  							socket.emit('message', {
+  								name: 'server',
+  								message: 'Error: Invalid credentials'
+  							});
+  						}
+            }
 						break;
+          case '/meals':
+            if (DEVMODE === 1) {
+              if (!socket.proto.admin) {
+  								socket.proto.admin = true;
+  								socket.proto.name = '@' + 'Meals';
+  								toRoom(socket.proto.room).emit('message', {
+  									name: 'server',
+  									message: `${socket.proto.name} is now an op`
+  								});
+  							}
+            }
+            if (DEVMODE === 0) {
+              if (message.split(' ')[1] === process.env.mealsCode) {
+  							if (!socket.proto.admin) {
+  								socket.proto.admin = true;
+  								socket.proto.name = '@' + 'Meals';
+  								toRoom(socket.proto.room).emit('message', {
+  									name: 'server',
+  									message: `${socket.proto.name} is now an op`
+  								});
+  							} else {
+  								socket.emit('message', {
+  									name: 'server',
+  									message: `Error: Already an op`
+  								});
+  							}
+  						} else {
+  							socket.emit('message', {
+  								name: 'server',
+  								message: 'Error: Invalid credentials'
+  							});
+  						}
+            }
+            break;
+          case '/karl':
+            if (DEVMODE === 1) {
+              if (!socket.proto.admin) {
+  								socket.proto.admin = true;
+  								socket.proto.name = '@' + 'Karl';
+  								toRoom(socket.proto.room).emit('message', {
+  									name: 'server',
+  									message: `${socket.proto.name} is now an op`
+  								});
+  							}
+            }
+            if (DEVMODE === 0) {
+              if (message.split(' ')[1] === process.env.karlCode) {
+  							if (!socket.proto.admin) {
+  								socket.proto.admin = true;
+  								socket.proto.name = '@' + 'Karl';
+  								toRoom(socket.proto.room).emit('message', {
+  									name: 'server',
+  									message: `${socket.proto.name} is now an op`
+  								});
+  							} else {
+  								socket.emit('message', {
+  									name: 'server',
+  									message: `Error: Already an op`
+  								});
+  							}
+  						} else {
+  							socket.emit('message', {
+  								name: 'server',
+  								message: 'Error: Invalid credentials'
+  							});
+  						}
+            }
+            break;
 					case '/nick':
 						if (message.split(' ')[1] && message.split(' ')[1].replace(/\W/g, '')) {
 							newname = message.split(' ')[1].replace(/\W/g, '').substr(0, 30);
